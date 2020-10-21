@@ -4,6 +4,10 @@ import scala.io.StdIn._
 
 object Solution extends App {
     def getClosest(numbers: Array[Int]) = {
+        if (numbers.contains(0)) {
+            println(0)
+        }
+
         val positivesNumbers : Array[Int] =  numbers.filter(_ >= 0)
         val negativesNumbers : Array[Int] =  numbers.filter(_ <= 0)
         
@@ -16,6 +20,18 @@ object Solution extends App {
             case None => -273
             case Some(value) => value
         }
+
+        /* loop
+        var maxNegative : Int = -273
+        var minPositive : Int = 5526
+
+        for (i <- 0 until numbers.size) {
+            if (numbers(i) > 0 && numbers(i) <= minPositive) {
+                minPositive = numbers(i)
+            } else if (numbers(i) < 0 && numbers(i).abs <= maxNegative.abs) {
+                maxNegative = numbers(i)
+            }
+        }*/
 
         if (minPositive == maxNegative.abs) {
             println(minPositive)
