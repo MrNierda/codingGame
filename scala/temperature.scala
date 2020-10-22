@@ -50,4 +50,6 @@ object Solution extends App {
         case 1 => println(inputs(0))
         case _ => getClosest(inputs.map(_.toInt))
     }
+
+    //use of lsit.minBy to look into
 }
