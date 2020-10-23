@@ -7,22 +7,24 @@ object Solution extends App {
     val n = readLine.toInt
     var strength = mutable.TreeSet[Int]()
 
+    var minStrengthDiff = Integer.MAX_VALUE
+
     for(i <- 0 until n) {
         strength += readLine.toInt
     }
 
-    Console.err.println(s"Debug messages $strength")
-
-    var min = Integer.MAX_VALUE
-
-    val it = strength.iterator
-    var prev = it.next()
-    while (it.hasNext) {
-        var curr = it.next();
-        if (curr-prev < min)
-            min = curr-prev;
-        prev = curr;
+    if (strength.size == 1) {
+        minStrengthDiff = 0
     }
 
-    println(min)
+    val it = strength.iterator
+    var previousHorse = it.next()
+    while (it.hasNext) {
+        var currentHorse = it.next();
+        if (currentHorse - previousHorse < minStrengthDiff)
+            minStrengthDiff = currentHorse - previousHorse;
+        previousHorse = currentHorse;
+    }
+
+    println(minStrengthDiff)
 }
