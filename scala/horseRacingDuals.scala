@@ -1,43 +1,28 @@
 import math._
 import scala.util._
 import scala.io.StdIn._
-
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
-object Solution extends App {
-    val n = readLine.toInt
-    for(i <- 0 until n) {
-        val pi = readLine.toInt
-        println(pi)
-    }
-    
-    // Write an answer using println
-    // To debug: Console.err.println("Debug messages...")
-    
-    println("answer")
-}
+import scala.collection.mutable 
 
 object Solution extends App {
     val n = readLine.toInt
-    var strength = new mutable.ListBuffer[Int]()
+    var strength = mutable.TreeSet[Int]()
 
     for(i <- 0 until n) {
         strength += readLine.toInt
     }
 
-    var s = strength.toList.sorted
+    Console.err.println(s"Debug messages $strength")
 
-    Console.err.println(s"Debug messages $s")
+    var min = Integer.MAX_VALUE
 
-    var strengthDiff = new mutable.ListBuffer[Int]()
-
-    for(i <- 0 until n - 1) {
-        strengthDiff += (s(i) - s(i+1)).abs 
+    val it = strength.iterator
+    var prev = it.next()
+    while (it.hasNext) {
+        var curr = it.next();
+        if (curr-prev < min)
+            min = curr-prev;
+        prev = curr;
     }
 
-    assert(strength.size > strengthDiff.size)
-
-    println(strengthDiff.toList.min)
+    println(min)
 }
