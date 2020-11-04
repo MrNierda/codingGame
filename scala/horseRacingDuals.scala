@@ -5,7 +5,7 @@ import scala.collection.mutable
 
 object Solution extends App {
     val n = readLine.toInt
-    var strength = mutable.TreeSet[Int]()
+    var strength = mutable.ListBuffer[Int]()
 
     var minStrengthDiff = Integer.MAX_VALUE
 
@@ -13,9 +13,11 @@ object Solution extends App {
         strength += readLine.toInt
     }
 
-    if (strength.size == 1) {
+    if (strength.toSet.size == 1) {
         minStrengthDiff = 0
     }
+
+    strength = strength.sorted
 
     val it = strength.iterator
     var previousHorse = it.next()
